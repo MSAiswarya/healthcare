@@ -1,0 +1,99 @@
+{% load static %}
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+  
+    h1 {
+      text-align: center;
+      color: #444;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+  
+    form {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+  
+    .form-group {
+      margin-bottom: 15px;
+    }
+  
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+    }
+  
+    input[type="text"]:focus, input[type="number"]:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+    }
+  
+    button {
+      display: block;
+      width: 100%;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  
+    button:hover {
+      background-color: #0056b3;
+    }
+  
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+    }
+  </style>
+  
+  <h1>Add New Patient</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Patient Name</label>
+      <input type="text" id="name" name="name" class="form-control" placeholder="Enter patient's name" required>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" class="form-control" placeholder="Enter patient's age" required>
+    </div>
+    <div class="form-group">
+      <label for="disease">Disease</label>
+      <input type="text" id="disease" name="disease" class="form-control" placeholder="Enter disease" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Patient</button>
+  </form>
+

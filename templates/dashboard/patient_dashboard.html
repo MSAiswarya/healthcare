@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard_styles.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'my_appointments' %}">My Appointments</a></li>
+            <li><a href="{% url 'create_appointment' %}">Book an Appointment</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome, {{ user.patient }}!</h1>
+        <h2>Upcoming Appointments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in upcoming_appointments %}
+                    <tr>
+                        <td>{{ appointment.doctor.user.get_full_name }}</td>
+                        <td>{{ appointment.date }}</td>
+                        <td>{{ appointment.time }}</td>
+                        <td>{{ appointment.description }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No upcoming appointments.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

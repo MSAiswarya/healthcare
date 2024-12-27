@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard_styles.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'appointments_list' %}">View All Appointments</a></li>
+            <li><a href="{% url 'manage_doctors' %}">Manage Doctors</a></li>
+            <li><a href="{% url 'manage_patients' %}">Manage Patients</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome, Admin!</h1>
+        <h2>Dashboard Summary</h2>
+        <ul>
+            <li>Total Appointments: {{ total_appointments }}</li>
+            <li>Total Doctors: {{ total_doctors }}</li>
+            <li>Total Patients: {{ total_patients }}</li>
+        </ul>
+    </div>
+</body>
+</html>
+{% endblock %}

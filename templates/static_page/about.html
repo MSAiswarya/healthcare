@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{% static 'css/main_styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+    </header>
+    <section class="content">
+        <p>
+            Welcome to our Healthcare Appointment System. We strive to provide the best service to connect patients with healthcare professionals effortlessly. Our mission is to make healthcare accessible and convenient for everyone.
+        </p>
+        <p>
+            Our team consists of experienced professionals dedicated to improving healthcare delivery through technology.
+        </p>
+    </section>
+    <footer>
+        <a href="{% url 'home' %}" class="btn">Go Back Home</a>
+    </footer>
+</body>
+</html>

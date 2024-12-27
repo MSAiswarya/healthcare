@@ -1,0 +1,55 @@
+{% load static %}
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en"> 
+    <header>
+        <div class="container">
+            <h1>Healthcare Application</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'doctor_dashboard' %}">Dashboard</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Healthcare Application{% endblock %}</title>
+    <!-- Add your stylesheets here -->
+    <link rel="stylesheet" href="{% static 'css/base_styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            {% block content %}
+            <!-- Page-specific content will be injected here -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Healthcare Application. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

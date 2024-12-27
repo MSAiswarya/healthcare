@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment List</title>
+    
+</head>
+<style>
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(even) td {
+    background-color: #f1f1f1;
+}
+
+tr:hover td {
+    background-color: #e9f5e9;
+}
+
+td a {
+    text-decoration: none;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 4px;
+}
+
+a.btn-update {
+    background-color: #2196F3;
+    margin-right: 10px;
+}
+
+a.btn-update:hover {
+    background-color: #0b7dda;
+}
+
+a[href*="delete_appointment"] {
+    background-color: #f44336;
+}
+
+a[href*="delete_appointment"]:hover {
+    background-color: #d32f2f;
+}
+
+/* Button Styles */
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #007bff;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>Appointment List</h1>
+        <table class="appointment-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient Name</th>
+                    <th>Doctor Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.id }}</td>
+                    <td>{{ appointment.patient.name }}</td>
+                    <td>{{ appointment.doctor.name }}</td>
+                    <td>{{ appointment.date }}</td>
+                    <td>{{ appointment.time }}</td>
+                    <td>
+                        <a href="{% url 'update_appointment' appointment.id %}" class="btn btn-update">Update</a>
+                        <a href="{% url 'delete_appointment' appointment_id=appointment.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'create_appointment' %}" class="btn btn-add">Create Appointment</a>
+    </div>
+</body>
+</html>
